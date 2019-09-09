@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>FF Bug</title>
+    <style>
+      .container {
+        width: 500px;
+        height: 300px;
+        background: pink;
+        display: flex;
+        justify-content: center;
+      }
+
+      video {
+        /* Comment this out and the video does not freeze */
+        min-width: 95%;
+
+        max-width: 95%;
+        max-height: 95%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>FF Bug</h1>
+    <p>
+      When the video <strong>has a caption file</strong> and
+      <strong><code>min-width</code> CSS property is set</strong>, the video UI
+      locks up and you need to kill the FF tab. If it remains open, the CPU
+      spikes for the tab content.
+    </p>
+    <p></p>
+    <div class="container">
+      <video controls>
+        <source type="video/mp4" src="./flower.mp4" />
+
+        <!-- Commenting out the track below allows the video to play without freeze -->
+        <track
+          kind="captions"
+          label="English"
+          srclang="en"
+          src="./captions.vtt"
+          default="true"
+        />
+      </video>
+    </div>
+  </body>
+</html>
